@@ -131,8 +131,8 @@ namespace :install do
   task :brew_cask do
     step 'Homebrew Cask'
     system('brew untap phinze/cask') if system('brew tap | grep phinze/cask > /dev/null')
-    unless system('brew tap | grep caskroom/cask > /dev/null') || system('brew tap caskroom/cask')
-      abort "Failed to tap caskroom/cask in Homebrew."
+    unless system('brew tap | grep homebrew/cask-cask > /dev/null') || system('brew tap homebrew/cask-cask')
+      abort "Failed to tap homebrew/cask-cask in Homebrew."
     end
   end
 
@@ -202,7 +202,7 @@ exec /Applications/MacVim.app/Contents/MacOS/Vim "$@"
   task :vundle do
     step 'vundle'
     install_github_bundle 'VundleVim','Vundle.vim'
-    sh '~/bin/vim -c "PluginInstall!" -c "q" -c "q"'
+    sh 'vim -c "PluginInstall!" -c "q" -c "q"'
   end
 end
 
@@ -228,14 +228,14 @@ LINKED_FILES = filemap(
 
 desc 'Install these config files.'
 task :install do
-  Rake::Task['install:brew'].invoke
-  Rake::Task['install:brew_cask'].invoke
-  Rake::Task['install:the_silver_searcher'].invoke
-  Rake::Task['install:iterm'].invoke
-  Rake::Task['install:ctags'].invoke
-  Rake::Task['install:reattach_to_user_namespace'].invoke
-  Rake::Task['install:tmux'].invoke
-  Rake::Task['install:macvim'].invoke
+  # Rake::Task['install:brew'].invoke
+  # Rake::Task['install:brew_cask'].invoke
+  # Rake::Task['install:the_silver_searcher'].invoke
+  # Rake::Task['install:iterm'].invoke
+  # Rake::Task['install:ctags'].invoke
+  # Rake::Task['install:reattach_to_user_namespace'].invoke
+  # Rake::Task['install:tmux'].invoke
+  # Rake::Task['install:macvim'].invoke
 
   # TODO install gem ctags?
   # TODO run gem ctags?
