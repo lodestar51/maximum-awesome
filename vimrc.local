@@ -31,3 +31,180 @@ function! s:RemoveConflictingAlignMaps()
 endfunction
 command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+colorscheme darkblue
+"set encoding=UTF-8
+"set guifont=DroidSansMonoForPowerlineNerdFont\ 12
+"对于GUI的字体设置
+if has('gui_running')
+    "set guioptions-=T  " no toolbar
+    "colorscheme elflord
+    set lines=60 columns=108 linespace=0
+    if has('gui_win32')
+      set guifont=DejaVu_Sans_Mono:h10:cANSI
+    else
+      set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+endif
+"set guifont=Droid_Sans_Mono:h13
+"set guifontwide=YaHei_Mono:h12
+set guifont=:h
+
+set guifont=DroidSansMono\ Nerd\ Font:h11
+  " or:
+"set guifont=DroidSansMono_Nerd_Font:h11
+
+if has("gui_running")
+    let system = system('uname -s')
+    if system == "Darwin\n"
+        set guifont=Droid\ Sans\ Mono\ Nerd\ Font\ Complete:h18 " 设置字体
+    else
+        set guifont=DroidSansMono\ Nerd\ Font\ Regular\ 18      " 设置字体
+    endif
+    " set guioptions-=m           " 隐藏菜单栏
+    " set guioptions-=T           " 隐藏工具栏
+    " set guioptions-=L           " 隐藏左侧滚动条
+    " set guioptions-=r           " 隐藏右侧滚动条
+    " set guioptions-=b           " 隐藏底部滚动条
+    " set showtabline=0           " 隐藏Tab栏
+    set guicursor=n-v-c:ver5    " 设置光标为竖线
+endif
+"https://github.com/chxuan/vimplus/blob/master/.vimrc
+
+" airline
+let g:airline_theme="onedark"
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+" YCM
+" 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
+let g:ycm_server_python_interpreter = '/Users/zongzhi/.pyenv/shims/python'
+
+set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16 " light
+" 设置字体
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+" 状态栏开启图标支持
+let g:airline_powerline_fonts = 1
+inoremap jj <ESC>
+
+" https://www.dreamxu.com/books/vim/plugin/vim-easymotion.html
+" 更改快捷键
+map f <Plug>(easymotion-prefix)
+map ff <Plug>(easymotion-s)
+map fs <Plug>(easymotion-f)
+map fl <Plug>(easymotion-lineforward)
+map fj <Plug>(easymotion-j)
+map fk <Plug>(easymotion-k)
+map fh <Plug>(easymotion-linebackward)
+" 忽略大小写
+let g:EasyMotion_smartcase = 1
+
+" 打开/关闭 NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" https://www.dreamxu.com/books/vim/plugin/youcompleteme.html
+" Go to definition else declaration
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" 主动调用补全
+let g:ycm_key_invoke_completion = '<C-a>'
+
+let g:ycm_autoclose_preview_window_after_completion=1
+" 跳转到定义处
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" 默认tab、s-tab和自动补全冲突
+let g:ycm_key_list_select_completion = ['<TAB>', '<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<c-p>', '<Up>']
+let g:ycm_auto_trigger = 1
+
+
+" 解决与 YCM 插件的冲突
+"let g:UltiSnipsExpandTrigger="<c-j>"
+"let g:UltiSnipsJumpForwardTrigger="<c-j>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" 配色方案
+set background=dark
+"colorscheme solarized
+" colorscheme molokai
+"colorscheme phd
+
+" 禁止光标闪烁
+set gcr=a:block-blinkon0
+" 禁止显示滚动条
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+" 禁止显示菜单和工具条
+set guioptions-=m
+set guioptions-=T
+
+" 总是显示状态栏
+set laststatus=2
+" 显示光标当前位置
+set ruler
+" 开启行号显示
+set number
+" 高亮显示当前行/列
+set cursorline
+set cursorcolumn
+" 高亮显示搜索结果
+set hlsearch
+
+" 自适应不同语言的智能缩进
+filetype indent on
+" 将制表符扩展为空格
+set expandtab
+" 设置编辑时制表符占用空格数
+set tabstop=4
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+
+" 随 vim 自启动
+let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+let g:indent_guides_start_level=2
+" 色块宽度
+let g:indent_guides_guide_size=1
+" 快捷键 i 开/关缩进可视化
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
+" 基于缩进或语法进行代码折叠
+"set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+
+" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
+nmap <Leader>fl :NERDTreeToggle<CR>
+" 设置NERDTree子窗口宽度
+let NERDTreeWinSize=32
+" 设置NERDTree子窗口位置
+" let NERDTreeWinPos="right"
+" 显示隐藏文件
+let NERDTreeShowHidden=1
+" NERDTree 子窗口中不显示冗余帮助信息
+let NERDTreeMinimalUI=1
+" 删除文件时自动删除文件对应 buffer
+let NERDTreeAutoDeleteBuffer=1
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsUsePythonVersion=3
+
+
+" https://harttle.land/2015/11/14/vim-window.html
